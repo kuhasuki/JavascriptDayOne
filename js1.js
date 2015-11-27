@@ -10,7 +10,6 @@ Array.prototype.uniq2 = function(){
       uniqArray.push(this[i]);
     }
   }
-  console.log(uniqArray);
   return uniqArray
 }
 
@@ -27,7 +26,6 @@ Array.prototype.two_sum = function(){
       }
     }
   }
-  console.log(sumBucket);
   return sumBucket;
 }
 
@@ -37,15 +35,14 @@ Array.prototype.two_sum = function(){
 Array.prototype.transpose = function(){
   var transposedArray = [];
   var transposableArray = this.makeTransposable();
+
   for (var i = 0; i < transposableArray.length; i++) {
-    console.log("Outermost Loop");
     transposedArray.push([]);
+
     for (var j = 0; j < transposableArray[i].length; j++) {
-      console.log("Inner Loop");
       transposedArray[i].push(transposableArray[j][i]);
     }
   }
-  console.log(transposedArray);
   return transposedArray;
 }
 
@@ -64,5 +61,30 @@ Array.prototype.makeTransposable = function(){
   return this;
 }
 
-var untransposeableArray = [[1,2,3],[4],[7,8,9]];
-untransposeableArray.transpose();
+// var untransposeableArray = [[1,2,3],[4],[7,8,9]];
+// untransposeableArray.transpose();
+
+// myEach
+Array.prototype.myEach = function(passedFunction) {
+  var i = 0;
+  while(i < this.length) {
+    passedFunction(this[i]);
+    i++;
+  }
+  return this
+}
+var oneOfTheseThingIsNotLikeTheOthers = ["Beijing", "Seoul", "Pyongyang", "Tokyo"]
+oneOfTheseThingIsNotLikeTheOthers.myEach(lawg);
+
+function lawg(arg){
+  console.log(arg);
+}
+
+// MY Map
+Array.prototype.myMap = function(passedFunction) {
+  var mappedArray = [];
+  this.myEach(function(ele){
+    mappedArray.push(passedFunction(ele));
+  });
+  return mappedArray;
+}
